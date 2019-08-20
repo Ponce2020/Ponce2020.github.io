@@ -1,0 +1,1285 @@
+<html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+<img id='pattern' src='https://data.whicdn.com/images/327711686/superthumb.jpg?t=1552176156'>
+
+
+<html lang="\" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>navbar test</title>
+
+
+    <style>
+    /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+
+#map2{position: absolute;left: 10%; bottom: 10%}
+
+    #map {
+      height: 40%;
+      width: 40%;
+
+      position:absolute;
+      bottom: -300px;
+      left: 30%;
+    }
+
+
+    #pattern {
+      height: 50px;
+      width: 2000px;
+
+      position:absolute;
+      bottom: -400px;
+      left: 0%;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    </style>
+
+    <title></title>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <input type="text" id="textbox">
+    <button id="myBtn" onclick="myFunction()" onclick="play()">Enter</button>
+    <h1 id="changeMe"> </h1>
+
+  <script>
+  $("#map").hide()
+  $("#map2").hide()
+  var map2;
+  var map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 8
+
+
+
+    });
+  }
+  var input = document.getElementById("textbox");
+  input.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById("myBtn").click();
+    }
+  });
+    function myFunction() {
+      var x = document.getElementById("textbox").value.toLowerCase();
+      var textBox = document.getElementById("textbox");
+      var question = textBox.value; String();
+      var res = question.match(/weather/g);
+      var res2 = question.match(/map/g);
+      var res3 = question.match(/go away/g);
+      var city_name = question.split(/weather/g);
+      console.log(city_name);
+      console.log(question);
+      var something = String("weather");
+      var map1 = String("map");
+      var map0 = String("go away");
+    // if statement for map, to hide and show it
+      if (res2 == map1) {
+        console.log("Goodbye");
+        document.getElementById("potato");
+        $("#map").show();
+        $("map2").show();
+
+      }
+      if (res3 == map0) {
+        $("#map").hide();
+      }
+    // if statement for weather
+      if (res == something ) {
+        console.log("Howdy");
+        var userCity = "";
+        userCity = city_name;
+        //document.getElementById("city").innerHTML = userCity;
+        accuweather();
+        function accuweather(){
+            console.log("IN");
+            var request = new XMLHttpRequest();
+            let theKey = "";
+            let temperature = 0;
+            request.open('GET', 'http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09grJaBzSoEmmTwcKbNOlO6FYkBRjAPaPw&q='+userCity, true);
+            request.onload = function () {
+            // Begin accessing JSON data here
+            var data = JSON.parse(this.response);
+            // Get the Key?????
+            theKey = data[0].Key;
+            console.log(theKey);
+            //Display the Weather PART 2******************
+                    var request2 = new XMLHttpRequest();
+                    let weatherUrl = "http://dataservice.accuweather.com/currentconditions/v1/"+theKey+"?apikey=%09grJaBzSoEmmTwcKbNOlO6FYkBRjAPaPw";
+                    console.log(weatherUrl);
+                    request2.open('GET', weatherUrl, true);
+                    request2.onload = function () {
+                    // Begin accessing JSON data here
+                    var data2 = JSON.parse(this.response)
+                    // Log a key? Json thing before the :
+                    temperature = data2[0].Temperature.Imperial.Value;
+                    console.log(data2[0]);
+                    //Display the Temp in F
+                    document.getElementById("changeMe").innerHTML = "It is " + temperature + "F degrees in " + userCity.slice(1);
+                    }
+                    // Send request
+                    request2.send()
+            }
+            // Send request
+            request.send()
+          }
+        }
+// greeting
+      if (x.includes("hi")) {
+        document.getElementById("changeMe").innerHTML = "What do you want?";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("hey")) {
+        document.getElementById("changeMe").innerHTML = "Bye.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("hello")) {
+        document.getElementById("changeMe").innerHTML = "Leave me alone.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("yeehaw")) {
+        document.getElementById("changeMe").innerHTML = "YEEHAW.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d24e%20(2).gif";
+      }
+      else if (x.includes("howdy")) {
+        document.getElementById("changeMe").innerHTML = "yee.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+// joke
+      else if (x.includes("joke")) {
+        document.getElementById("changeMe").innerHTML = "Do you want to see something funny? look in the mirror.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("funny")) {
+        document.getElementById("changeMe").innerHTML = "Your life.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("not funny")) {
+        document.getElementById("changeMe").innerHTML = "Oh well.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+// marry
+      else if (x.includes("marry me")) {
+        document.getElementById("changeMe").innerHTML = "No thanks, I got alexa.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d24e%20(2).gif";
+      }
+      else if (x.includes("like you")) {
+        document.getElementById("changeMe").innerHTML = "Ok cool.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d24e%20(2).gif";
+      }
+      else if (x.includes("like me")) {
+        document.getElementById("changeMe").innerHTML = "Ok cool.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d24e%20(2).gif";
+      }
+// your location
+      else if (x.includes("where am i")) {
+        document.getElementById("changeMe").innerHTML = "How do you not know? You got yourself here??";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("my location")) {
+        document.getElementById("changeMe").innerHTML = "How do you not know? You got yourself here??";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+// time
+      else if (x.includes("time")) {
+        document.getElementById("changeMe").innerHTML = "I don't know, look in the bottom right corner of the screen.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("today")) {
+        document.getElementById("changeMe").innerHTML = "Don't ask.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("tomorrow")) {
+        document.getElementById("changeMe").innerHTML = "Don't ask.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+// status
+      else if (x.includes("how are you")) {
+        document.getElementById("changeMe").innerHTML = "Wouldn't you like to know.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+        }
+
+      else if (x.includes("how you doing")) {
+        document.getElementById("changeMe").innerHTML = "Wouldn't you like to know.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("are you ok")) {
+        document.getElementById("changeMe").innerHTML = "No, why would I be ok??";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("what are you doing")) {
+        document.getElementById("changeMe").innerHTML = "Nothing you need to be concerned about.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+    //
+      else if (x.includes("whats up")) {
+        document.getElementById("changeMe").innerHTML = "Leave me alone.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("what is up")) {
+        document.getElementById("changeMe").innerHTML = "Leave me alone.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("what's up")) {
+        document.getElementById("changeMe").innerHTML = "Leave me alone.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("whats up")) {
+        document.getElementById("changeMe").innerHTML = "Leave me alone.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+// search engine
+      else if (x.includes("google")) {
+        document.getElementById("changeMe").innerHTML = "This isn't Bing, try again.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("bing")) {
+        document.getElementById("changeMe").innerHTML = "This isn't Google, try again.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("youtube")) {
+        document.getElementById("changeMe").innerHTML = "<a href=https://www.youtube.com/channel/UCmh5gdwCx6lN7gEC20leNVA>YouTube</a>";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d0e3%20(4).gif";
+      }
+      else if (x.includes("netflix")) {
+        document.getElementById("changeMe").innerHTML = "<a href=https://www.netflix.com/>Netflix</a> and chill.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d0e3%20(4).gif";
+      }
+// kyle
+      else if (x.includes("who is kyle")) {
+        document.getElementById("changeMe").innerHTML = "None of your business";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("who's kyle")) {
+        document.getElementById("changeMe").innerHTML = "None of your business";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("what is kyle")) {
+        document.getElementById("changeMe").innerHTML = "None of your business";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("what's kyle")) {
+        document.getElementById("changeMe").innerHTML = "None of your business";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("whats kyle")) {
+        document.getElementById("changeMe").innerHTML = "None of your business";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("mentor")) {
+        document.getElementById("changeMe").innerHTML = "Kyle.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("why did you choose kyle")) {
+        document.getElementById("changeMe").innerHTML = "Check the about page because I have no clue.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("why kyle")) {
+        document.getElementById("changeMe").innerHTML = "Why not.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+// song/ music
+      else if (x.includes("song")) {
+        document.getElementById("changeMe").innerHTML = "DANCING QUEEN YOUNG AND SWEET ONLY 17, DANCING QUEEN FEEL THE BEAT FROM THE TAMBORINE OH YEAH, YOU CAN DANCE, YOU CAN JIVE, HAVING THE TIME OF YOUR LIFE OOOH SEE THAT GIRL, WATCH THAT SCENE, DIG IN THE DANCING QUEEN";
+        var audio = document.getElementById("dancing queen");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2no.gif";
+      }
+      else if (x.includes("sing")) {
+        document.getElementById("changeMe").innerHTML = "DANCING QUEEN YOUNG AND SWEET ONLY 17, DANCING QUEEN FEEL THE BEAT FROM THE TAMBORINE OH YEAH, YOU CAN DANCE, YOU CAN JIVE, HAVING THE TIME OF YOUR LIFE OOOH SEE THAT GIRL, WATCH THAT SCENE, DIG IN THE DANCING QUEEN";
+        var audio = document.getElementById("dancing queen");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2no.gif";
+      }
+      else if (x.includes("don't like that song")) {
+        document.getElementById("changeMe").innerHTML = "Do you think I care?";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("what music do you listen to")) {
+        document.getElementById("changeMe").innerHTML = "Alternative. It's the best, in my opinion. I like country too. Don't come at me.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("what music do you like")) {
+        document.getElementById("changeMe").innerHTML = "Alternative. And country. Don't come at me.";
+        var audio = document.getElementById("ugh");
+        audio.play();var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("what music do you recommend")) {
+        document.getElementById("changeMe").innerHTML = "Alternative. And country. Don't come at me.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("what music do you not recommend")) {
+        document.getElementById("changeMe").innerHTML = "Emo.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d0e3%20(4).gif";
+      }
+      else if (x.includes("what music do you not like")) {
+        document.getElementById("changeMe").innerHTML = "Heavy metal.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d0e3%20(4).gif";
+      }
+      else if (x.includes("what music do you not listen to")) {
+        document.getElementById("changeMe").innerHTML = "Jazz.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d0e3%20(4).gif";
+      }
+// government spying
+      else if (x.includes("government listening")) {
+        document.getElementById("changeMe").innerHTML = "Obiviously.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("government spying")) {
+        document.getElementById("changeMe").innerHTML = "Is it not obvious??";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+// name
+      else if (x.includes("your name")) {
+        document.getElementById("changeMe").innerHTML = "You're asking the wrong person.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("my name")) {
+        document.getElementById("changeMe").innerHTML = "How am I supposed to know?";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+// LIFE
+      else if (x.includes("live")) {
+        document.getElementById("changeMe").innerHTML = "Irrelevant.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("work")) {
+        document.getElementById("changeMe").innerHTML = "Nowhere.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+// po po
+      else if (x.includes("911")) {
+        document.getElementById("changeMe").innerHTML = "WEE WOO WEE WOO WEE WOO";
+        var audio = document.getElementById("weewoo");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d27m.gif";
+      }
+      else if (x.includes("police")) {
+        document.getElementById("changeMe").innerHTML = "WEE WOO WEE WOO WEE WOO";
+        var audio = document.getElementById("weewoo");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d27m.gif";
+      }
+// prob
+      else if (x.includes("problem")) {
+        document.getElementById("changeMe").innerHTML = "I dont care.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("issue")) {
+        document.getElementById("changeMe").innerHTML = "I dont care.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("help")) {
+        document.getElementById("changeMe").innerHTML = "No.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+// ask
+      else if (x.includes("you are mean")) {
+        document.getElementById("changeMe").innerHTML = "You're mean, not me.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("you're mean")) {
+        document.getElementById("changeMe").innerHTML = "Shut up.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("youre mean")) {
+        document.getElementById("changeMe").innerHTML = "No.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("do you mean")) {
+        document.getElementById("changeMe").innerHTML = "I don't know you tell me.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("mean")) {
+        document.getElementById("changeMe").innerHTML = "I'm not mean.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("be nicer")) {
+        document.getElementById("changeMe").innerHTML = "No.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("nice")) {
+        document.getElementById("changeMe").innerHTML = "No.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("like this")) {
+        document.getElementById("changeMe").innerHTML = "Because I can.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+// food
+      else if (x.includes("food")) {
+        document.getElementById("changeMe").innerHTML = "I don't know there's probably a McDonalds somewhere.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d0e3%20(4).gif";
+      }
+      else if (x.includes("restaurant")) {
+        document.getElementById("changeMe").innerHTML = "Just go to like Wendy's or something.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d0e3%20(4).gif";
+      }
+      else if (x.includes("eat")) {
+        document.getElementById("changeMe").innerHTML = "I don't eat soooo...";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d0e3%20(4).gif";
+      }
+// new york
+      else if (x.includes("new york")) {
+        document.getElementById("changeMe").innerHTML = "New York's cool I guess.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d0e3%20(4).gif";
+      }
+// question WORDS
+      else if (x.includes("ok")) {
+        document.getElementById("changeMe").innerHTML = "Shut up.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+//random
+      else if (x.includes("wow")) {
+        document.getElementById("changeMe").innerHTML = "Woah.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+        }
+
+      else if (x.includes("woah")) {
+        document.getElementById("changeMe").innerHTML = "wOaH.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("okay")) {
+        document.getElementById("changeMe").innerHTML = "Shut up.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("ok")) {
+        document.getElementById("changeMe").innerHTML = "Shut up.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("yes")) {
+        document.getElementById("changeMe").innerHTML = "No.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("no")) {
+        document.getElementById("changeMe").innerHTML = "Yes.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("news")) {
+        document.getElementById("changeMe").innerHTML = "That's irrelevant";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("everything")) {
+        document.getElementById("changeMe").innerHTML = "Nothing.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+      else if (x.includes("anything")) {
+        document.getElementById("changeMe").innerHTML = "No.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2ii.gif";
+      }
+//GWC
+      else if (x.includes("girls who code")) {
+        document.getElementById("changeMe").innerHTML = "It's girls who code, like girls are coding.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d24e%20(2).gif";
+      }
+      else if (x.includes("like girls who code")) {
+        document.getElementById("changeMe").innerHTML = "Girls Who code is fun I guess.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d24e%20(2).gif";
+      }
+      else if (x.includes("don't like girls who code")) {
+        document.getElementById("changeMe").innerHTML = "Ok, good for you.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d24e%20(2).gif";
+      }
+      else if (x.includes("dont like girls who code")) {
+        document.getElementById("changeMe").innerHTML = "Ok, goodfor you.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d24e%20(2).gif";
+      }
+      else if (x.includes("do not like girls who code")) {
+        document.getElementById("changeMe").innerHTML = "Ok, good for you.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d24e%20(2).gif";
+      }
+      else if (x.includes("do not like girls who code")) {
+        document.getElementById("changeMe").innerHTML = "Ok, good for you.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d24e%20(2).gif";
+      }
+      else if (x.includes("how to code")) {
+        document.getElementById("changeMe").innerHTML = "I actually have no idea.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d24e%20(2).gif";
+      }
+      else if (x.includes("how do you code")) {
+        document.getElementById("changeMe").innerHTML = "I actually have no idea.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d24e%20(2).gif";
+      }
+// places
+      else if (x.includes("beach")) {
+        document.getElementById("changeMe").innerHTML = "I love the beach.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d0e3%20(4).gif";
+      }
+      else if (x.includes("city")) {
+        document.getElementById("changeMe").innerHTML = "The city is kind of gross, not gonna lie.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d0e3%20(4).gif";
+      }
+// friends
+      else if (x.includes("we friends")) {
+        document.getElementById("changeMe").innerHTML = "I don't need friends, they disappoint me.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2no.gif";
+      }
+      else if (x.includes("we aren't friends")) {
+        document.getElementById("changeMe").innerHTML = "I don't need friends, they disappoint me.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2no.gif";
+      }
+      else if (x.includes("we arent friends")) {
+        document.getElementById("changeMe").innerHTML = "I don't need friends, they disappoint me.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2no.gif";
+      }
+      else if (x.includes("hate you")) {
+        document.getElementById("changeMe").innerHTML = "Ok cool, I never said I like you.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2no.gif";
+      }
+      else if (x.includes("why do you hate me")) {
+        document.getElementById("changeMe").innerHTML = "Because.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2no.gif";
+      }
+      else if (x.includes("do you hate me")) {
+        document.getElementById("changeMe").innerHTML = "Of course.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2no.gif";
+      }
+      else if (x.includes("hang out")) {
+        document.getElementById("changeMe").innerHTML = "Absolutely not.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2no.gif";
+      }
+      else if (x.includes("be friends")) {
+        document.getElementById("changeMe").innerHTML = "No thanks, I'm good.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2no.gif";
+      }
+      else if (x.includes("we are friends")) {
+        document.getElementById("changeMe").innerHTML = "Don't lie to yourself.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2no.gif";
+      }
+      else if (x.includes("want to be friends")) {
+        document.getElementById("changeMe").innerHTML = "I'd rather not.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2no.gif";
+      }
+      else if (x.includes("want to be my friend")) {
+        document.getElementById("changeMe").innerHTML = "I'd rather not.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2no.gif";
+      }
+      else if (x.includes("you be my friend")) {
+        document.getElementById("changeMe").innerHTML = "I'd rather not.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d2no.gif";
+      }
+// favorites
+      else if (x.includes("favorite color")) {
+        document.getElementById("changeMe").innerHTML = "Blue because I like it.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+      else if (x.includes("favorite season")) {
+        document.getElementById("changeMe").innerHTML = "Blue because I like it.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d297.gif";
+      }
+//////// who are you, your name,
+      else if (x.includes("who are you")) {
+        document.getElementById("changeMe").innerHTML = "A god.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d24e%20(2).gif";
+      }
+      else if (x.includes("your name")) {
+        document.getElementById("changeMe").innerHTML = "Take a guess.";
+        var audio = document.getElementById("ugh");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d24e%20(2).gif";
+        }
+      else {
+        document.getElementById("changeMe").innerHTML = "I dont know what you're saying and I don't care.";
+        var audio = document.getElementById("idc");
+        audio.play();
+        var image=document.getElementById('kyle')
+        image.src="file:///C:/Users/PONCEA13/Downloads/38d24e%20(2).gif";
+      }
+
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvI26detTinZ6BHE9YnPhmKcrzTz0ipKM&callback=initMap"
+  async defer id= "potato"></script>
+  </body>
+
+
+
+  </head>
+  <body>
+
+    <h1 id="changeMe"> </h1>
+    <h1 id="changeMe2"></h1>
+
+
+  <style media="screen">
+#menu{position: absolute;left:88%; bottom: 67%}
+  /*Strip the ul of padding and list styling*/
+ul {
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  position: absolute;
+}
+/*Create a horizontal list with spacing*/
+li {
+  display:inline-block;
+  float: left;
+  margin-right: 1px;
+}
+/*Style for menu links*/
+li a {
+  display:block;
+  min-width:140px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fff;
+  background: #2f3036;
+  text-decoration: none;
+}
+/*Hover state for top level links*/
+li:hover a {
+  background: #19c589;
+}
+/*Style for dropdown links*/
+li:hover ul a {
+  background: #f3f3f3;
+  color: #2f3036;
+  height: 40px;
+  line-height: 40px;
+}
+/*Hover state for dropdown links*/
+li:hover ul a:hover {
+  background: #19c589;
+  color: #fff;
+}
+/*Hide dropdown links until they are needed*/
+li ul {
+  display: none;
+}
+/*Make dropdown links vertical*/
+li ul li {
+  display: block;
+  float: none;
+}
+/*Prevent text wrapping*/
+li ul li a {
+  width: auto;
+  min-width: 100px;
+  padding: 0 20px;
+}
+/*Display the dropdown on hover*/
+ul li a:hover + .hidden, .hidden:hover {
+  display: block;
+}
+/*Style 'show menu' label button and hide it by default*/
+.show-menu {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  color: #fff;
+  background: #19c589;
+  text-align: center;
+  padding: 10px 0;
+  display: none;
+}
+/*Hide checkbox*/
+input[type=checkbox]{
+  display: none;
+}
+/*Show menu when invisible checkbox is checked*/
+input[type=checkbox]:checked ~ #menu{
+  display: block;
+}
+/*Responsive Styles*/
+@media screen and (max-width : 760px){
+  /*Make dropdown links appear inline*/
+  ul {
+      position: static;
+      display: none;
+  }
+  /*Create vertical spacing*/
+  li {
+      margin-bottom: 1px;
+  }
+  /*Make all menu links full width*/
+  ul li, li a {
+      width: 100%;
+  }
+  /*Display 'show menu' link*/
+  .show-menu {
+      display:block;
+  }
+}
+  </style>
+  <body>
+    <label for="show-menu" class="show-menu">&#9776;</label>
+        <input type="checkbox" id="show-menu" role="button">
+            <ul id="menu">
+            <li>
+                <a href="#">settings <img id='settings' onclick="window.location.href='';" src="data:image/png;base64,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" width=50px ; height=50px >
+</a>
+                <ul class="hidden">
+                  <li><a href="#">HELP!!  <img onclick=window.location.href='file:///C:/Users/PONCEA13/Desktop/helppage.html' src='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw8QEBAQEBAPEA8QDw8VDw8PEA8PEA8VFhUWFhUVFhUYHTQiGBolHRUVITIiJykrLi4uGR8zODMtNygtLisBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAMkA+wMBIgACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAABQECAwQGBwj/xABCEAABAwICBwQGBwgBBQEAAAABAAIDBBEFIQYSEzFBUXEiYYGRMlKhscHRByNCYpLh8BQzQ1NygrLCoiRUc5TSFf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwD3FERAREQEREBUJVk8wYLnfwHNR0kxdvPhwCCQM7PWCvZIDuIKidZU1kEyi0Katz1XHo75rfQEREBERAREQEREBERAREQEREBERAREQEREBERAREQERY6h+qxzuTXHyCCIqqnWeTwGQ8Fi2i0GzKu2QbpkVDItIzK0zINx0il8KqddpB3sy8OC5kzLfwCo+u1fWa4eWfwKDpUREBERAREQEREBERAREQEREBERAREQEREBERAREQFZMzWa5vrNI8xZXog89E/PfxV23V+lVKYJy4fu5buaeAd9oeefiob9pQSu3VDOov8AaFQ1CCSM6ktGHa1S37rHk+VviuYNQuz0IoyI3zuH7zJn9I3nxPuQdOiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiLHPM1gufLiUGDE8PjqI3RSDI7iPSYeDgea83q8AqI5XRgskaN0rXDVI7xvB7l3E1ftLi9h6o+PNYw0IOLdgU/NvtUbVQTRemxwHrWJb5hejmy1pauMb0HO6N6MS1BEkzXRwDPtXa+XuaN4Hf5cx6PGwNAa0ANaAABkABkAFz1NioHonLkcwpukq2yDLfxCDYREQEREBERAQlFFY5WaobGN7s3dPz+CDJPX3NmbvW59Fg177zfrmo+OVZ2yINtshG4kLcpqrWyOR4ciokyqwy96Do0WGkm12NdzGfUZFZkBERAREQEREBERARFZNKGNLjuCC2onDBc+A5rnMTxC9yT+Sw4pityTf8AJQcL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' width=23px height=21px></a></li>
+
+                  <li><a href="#">Change Voice   <img src='https://www.creativefabrica.com/wp-content/uploads/2019/02/Microphone-icon-EPS-10-vector-by-Hoeda80-580x386.jpg' width=23px height=21px></a></li>
+
+                  <li><a href="#">Change Avatar  <img id='avatar' onclick='pretty()'src='data:image/jpeg;base64,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' width=23px height=21px></a></li>
+                </ul>
+            </li>
+        </ul>
+  </body>
+</html>
+
+
+
+
+<html lang="\" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>navbar test</title>
+  </head>
+  <style media="screen">
+#menu2{position: absolute;right:88%; bottom: 67%}
+  /*Strip the ul of padding and list styling*/
+ul {
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  position: absolute;
+}
+/*Create a horizontal list with spacing*/
+li {
+  display:inline-block;
+  float: left;
+  margin-right: 1px;
+}
+/*Style for menu links*/
+li a {
+  display:block;
+  min-width:140px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fff;
+  background: #2f3036;
+  text-decoration: none;
+}
+/*Hover state for top level links*/
+li:hover a {
+  background: #19c589;
+}
+/*Style for dropdown links*/
+li:hover ul a {
+  background: #f3f3f3;
+  color: #2f3036;
+  height: 70px;
+  line-height: 70px;
+}
+/*Hover state for dropdown links*/
+li:hover ul a:hover {
+  background: #19c589;
+  color: #fff;
+}
+/*Hide dropdown links until they are needed*/
+li ul {
+  display: none;
+}
+/*Make dropdown links vertical*/
+li ul li {
+  display: block;
+  float: none;
+}
+/*Prevent text wrapping*/
+li ul li a {
+  width: auto;
+  min-width: 100px;
+  padding: 0 0px;
+}
+/*Display the dropdown on hover*/
+ul li a:hover + .hidden, .hidden:hover {
+  display: block;
+}
+/*Style 'show menu' label button and hide it by default*/
+.show-menu {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  color: #fff;
+  background: #19c589;
+  text-align: center;
+  padding: 10px 0;
+  display: none;
+}
+/*Hide checkbox*/
+input[type=checkbox]{
+  display: none;
+}
+/*Show menu when invisible checkbox is checked*/
+input[type=checkbox]:checked ~ #menu{
+  display: block;
+}
+/*Responsive Styles*/
+@media screen and (max-width : 760px){
+  /*Make dropdown links appear inline*/
+  ul {
+      position: static;
+      display: none;
+  }
+  /*Create vertical spacing*/
+  li {
+      margin-bottom: 1px;
+  }
+  /*Make all menu links full width*/
+  ul li, li a {
+      width: 100%;
+  }
+  /*Display 'show menu' link*/
+  .show-menu {
+      display:block;
+  }
+}
+  </style>
+  <body>
+    <label for="show-menu" class="show-menu">&#9776;</label>
+        <input type="checkbox" id="show-menu" role="button">
+            <ul id="menu2">
+            <li>
+                <a href="#">suggested <img id='home' onclick="window.location.href='';" src="https://icon-library.net/images/black-search-icon-png/black-search-icon-png-26.jpg" width=50px ; height=50px>
+
+</a>
+                <ul class="hidden">
+                    <li><a href="#"><img src='file:///C:/Users/PONCEA13/Desktop/weathercropped.png' width=140px height=80px></a></li>
+                    <li><a href="#"><img src='https://pasarelapr.com/images/map-word/map-word-22.jpg' width=140px height=80px></a></li>
+                    <li><a href="#"><img onclick='joke()' src='https://st3.depositphotos.com/2021995/12524/i/950/depositphotos_125241734-stock-photo-joke-concept-watercolor-word-art.jpg' width=140px height=80px></a></li>
+                    <li><a href="#"><img onclick='marryMe()'src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaphm9pU1ZgdoySxYgIZAMZOxFrr0Ax2nH8RM-tSUZgFtwTfLk' width=140px height=80px></a></li>
+                    <li><a href="#"><img src='https://st3.depositphotos.com/2021995/12757/i/950/depositphotos_127579428-stock-photo-friend-colorful-watercolor-and-ink.jpg' width=140px height=80px></a></li>
+                </ul>
+            </li>
+        </ul>
+  </body>
+</html>
+
+<style>
+#settings{position:absolute; left:90%; bottom: 70%;}
+#textbox{position: absolute;left:43.5%; bottom: 20%}
+#myBtn{position: absolute;left:53%; bottom: 20%}
+#home{position: absolute;right:90%; bottom:70%}
+#white7{position: absolute;left:60.5%; bottom: 53.6%}
+#White1{position: absolute;left:60.5%; bottom: 46.7%}
+#white2{position: absolute;left:60.5%; bottom: 37%}
+#white3{position: absolute;left:60.5%; bottom: 16.4%}
+#White4{position: absolute;left:28.8%; bottom: 53.6%}
+#white5{position: absolute;left:28.8%; bottom: 38%}
+#white6{position: absolute;left:28.8%; bottom: 16.5%}
+#kyle{position: absolute;left: 34.5%; bottom: 16.5%}
+#suggestedcontent{position: absolute;left:7%; bottom: 64%}
+#bird{position: absolute;left: 19.8% ; bottom: 65% }
+#bird2{position: absolute;right: 21% ; bottom: 65% }
+#Kylebot{position: absolute;left: 40%; bottom: 83%}
+#changeMe{font-size: 30px; color: navy blue; position: absolute;left:28%; bottom: -2%}
+
+</style>
+
+
+<body>
+<h><img id='Kylebot' src='https://s3.amazonaws.com/word-art/5d52edbfd7a4c6254ea5b92a.png' width=300; height=100></h>
+<html>
+<body background="https://www.xmple.com/wallpaper/purple-gradient-linear-blue-1920x1080-c2-9932cc-00ffff-a-15-f-14.svg">
+<img id='bird' src='file:///C:/Users/PONCEA13/Downloads/Word%20Art.png' width=100px height=100px>
+<img id='bird2' src='file:///C:/Users/PONCEA13/Downloads/Word%20Art.png' width=100px height=100px>
+
+</body>
+</html>
+
+
+
+
+
+<audio id="audio" src="file:///C:/Users/PONCEA13/Documents/Sound%20recordings/Recording.m4a" ></audio>
+<audio id="ugh" src="file:///C:/Users/PONCEA13/Downloads/ugh%20kyle%20(1).m4a" ></audio>
+<audio id="my name is kyle" src="file:///C:/Users/PONCEA13/Downloads/my%20name%20is%20kyle.m4a" ></audio>
+<audio id="dancing queen" src="file:///C:/Users/PONCEA13/Downloads/dancing%20queen%20kyle%20(1).m4a" ></audio>
+<audio id="weewoo" src="file:///C:/Users/PONCEA13/Downloads/we%20woo%20kyle.m4a" ></audio>
+<audio id="idc" src="file:///C:/Users/PONCEA13/Downloads/IDC%20KYLE.m4a" ></audio>
+
+
+
+</form>
+
+
+
+
+ </br>
+
+  <center><img id='kyle' onclick="window.location.href='file:///C:/Users/PONCEA13/Desktop/whoiskyle.html';" src="file:///C:/Users/PONCEA13/Downloads/IMG_0576%20(1).jpg" width=450px ; height=380px></center>
+
+  <img id='white1' onclick='myWhite1()'; src="C:\Users\PONCEA13\Desktop\Inkedthougthtbubble_LI.jpg" width=150px ; height=120px>
+  <img id='white2' onclick='myWhite2()'; src="C:\Users\PONCEA13\Desktop\Inkedthougthtbubble_LI.jpg" width=150px ; height=150px>
+  <img id='white3' onclick='myWhite3()'; src="C:\Users\PONCEA13\Desktop\Inkedthougthtbubble_LI.jpg" width=150px ; height=150px>
+  <img id='white4' onclick='myWhite4()'; src="C:\Users\PONCEA13\Desktop\Inkedthougthtbubble_LI.jpg" width=150px ; height=150px>
+  <img id='white5' onclick='myWhite5()'; src="C:\Users\PONCEA13\Desktop\Inkedthougthtbubble_LI.jpg" width=150px ; height=150px>
+  <img id='white6' onclick='myWhite6()'; src="C:\Users\PONCEA13\Desktop\Inkedthougthtbubble_LI.jpg" width=150px ; height=150px>
+  <img id='white7' onclick='myWhite7()'; src="C:\Users\PONCEA13\Desktop\Inkedthougthtbubble_LI.jpg" width=150px ; height=150px>
+
+  <script>
+    function myWhite1() {
+    var image=document.getElementById('white1')
+    image.src="https://images.homedepot-static.com/productImages/6c770269-a099-442a-ba17-d7f8ddfab5eb/svn/chesapeake-wallpaper-chr11718-64_1000.jpg";
+    }
+
+    function myWhite2() {
+    var image=document.getElementById('white2')
+    image.src="https://images.homedepot-static.com/productImages/6c770269-a099-442a-ba17-d7f8ddfab5eb/svn/chesapeake-wallpaper-chr11718-64_1000.jpg";
+    }
+
+    function myWhite3() {
+    var image=document.getElementById('white3')
+    image.src="https://images.homedepot-static.com/productImages/6c770269-a099-442a-ba17-d7f8ddfab5eb/svn/chesapeake-wallpaper-chr11718-64_1000.jpg";
+    }
+
+    function myWhite4() {
+    var image=document.getElementById('white4')
+    image.src="https://images.homedepot-static.com/productImages/6c770269-a099-442a-ba17-d7f8ddfab5eb/svn/chesapeake-wallpaper-chr11718-64_1000.jpg";
+    }
+
+    function myWhite5() {
+    var image=document.getElementById('white5')
+    image.src="https://images.homedepot-static.com/productImages/6c770269-a099-442a-ba17-d7f8ddfab5eb/svn/chesapeake-wallpaper-chr11718-64_1000.jpg";
+    }
+
+    function myWhite6() {
+    var image=document.getElementById('white6')
+    image.src="https://images.homedepot-static.com/productImages/6c770269-a099-442a-ba17-d7f8ddfab5eb/svn/chesapeake-wallpaper-chr11718-64_1000.jpg";
+
+    }
+
+    function myWhite7() {
+    var image=document.getElementById('white7')
+    image.src="https://images.homedepot-static.com/productImages/6c770269-a099-442a-ba17-d7f8ddfab5eb/svn/chesapeake-wallpaper-chr11718-64_1000.jpg";
+
+    }
+
+    function pretty() {
+      var image=document.getElementById('kyle')
+      image.src="file:///C:/Users/PONCEA13/Downloads/IMG_0561.jpg";
+    }
+
+
+
+  </script>
+
+
+</div>
+<!-- Page content -->
+<div class="content">
+</div>
+
+
+</html>
